@@ -13,7 +13,7 @@ This Streamlit application allows you to chat with the content of a PDF or text 
 1.  Clone the repository:
 
     ```bash
-    git clone https://github.com/1165qwc/Chatbot/tree/main
+    git clone https://github.com/1165qwc/Chatbot.git
     ```
 
 2.  Navigate to the project directory:
