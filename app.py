@@ -31,11 +31,7 @@ def create_qa_chain(text):
         raise ValueError("No text chunks generated. Check text splitter configuration.")
     
     embeddings = OpenAIEmbeddings()
-    try:
     docsearch = FAISS.from_texts(texts, embeddings)
-    except Exception as e:
-        print(f"Error creating FAISS index: {e}")
-        raise
     
     llm = OpenAI()
     qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=docsearch.as_retriever())
