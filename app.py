@@ -22,10 +22,21 @@ def extract_text_from_pdf(file):
 
 def create_qa_chain(text):
     """Creates a question-answering chain using LangChain."""
+    if not text.strip():
+        raise ValueError("Input text cannot be empty.")
     text_splitter = CharacterTextSplitter(chunk_size=1000, chunk_overlap=0)
     texts = text_splitter.split_text(text)
+
+    if not texts:
+        raise ValueError("No text chunks generated. Check text splitter configuration.")
+    
     embeddings = OpenAIEmbeddings()
+    try:
     docsearch = FAISS.from_texts(texts, embeddings)
+    except Exception as e:
+        print(f"Error creating FAISS index: {e}")
+        raise
+    
     llm = OpenAI()
     qa_chain = RetrievalQA.from_chain_type(llm=llm, chain_type="stuff", retriever=docsearch.as_retriever())
     return qa_chain
