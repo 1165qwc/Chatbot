@@ -1,6 +1,6 @@
 import streamlit as st
 import PyPDF2
-from langchain.llms import OpenAI
+from langchain_openai import OpenAI
 from langchain.chains import RetrievalQA
 from langchain.document_loaders import TextLoader
 from langchain.text_splitter import CharacterTextSplitter
