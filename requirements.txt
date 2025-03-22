@@ -5,4 +5,5 @@ openai
 faiss-cpu
 tiktoken
 langchain-community
-faiss-cpu
+huggingface_hub
+PyPDF
